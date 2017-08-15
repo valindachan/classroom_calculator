@@ -56,18 +56,16 @@ end
 
 # Return the average for the entire class.
 def class_average(grade_hash)
-  result = averages(grade_hash).sort_by do |student, average|
+  ranked_grade_hash = averages(grade_hash).sort_by do |student, average|
     -average
   end
-  scores = result.map {|name, score| score}
-  (scores.reduce(1) {|sum, score| sum + score}) / 10
+  ranked_grade_hash.map {|name, score| score}.reduce(1) {|sum, score| sum + score} / grade_hash.length
 end
 
 # Return an array of the top `number_of_students` students.
 def top_students(grade_hash, number_of_students)
-  result = averages(grade_hash).sort_by do |student, average|
+  ranked_grade_hash = averages(grade_hash).sort_by do |student, average|
     -average
   end
-  names = result.map {|name| name[0]}
-  names.take(number_of_students)
+  ranked_grade_hash.map {|name| name[0]}.take(number_of_students)
 end
