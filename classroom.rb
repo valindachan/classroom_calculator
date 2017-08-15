@@ -25,7 +25,7 @@ end
 # use .to_h. Also look at Hash#transform_values.
 def averages(grade_hash)
   totals = grade_hash.transform_values {|grade| grade.reduce(0) {|sum, score| sum + score} }
-  $student_averages = totals.transform_values {|total| total / 10}
+  student_averages = totals.transform_values {|total| total / 10}
 end
 
 # Return a letter grade for a numerical score.
