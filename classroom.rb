@@ -24,8 +24,9 @@ end
 # TIP: To convert an array like [[:indiana, 90], [:nevada, 80]] to a hash,
 # use .to_h. Also look at Hash#transform_values.
 def averages(grade_hash)
+  num_assignments = grade_hash.take(1)[0][1].length
   totals = grade_hash.transform_values { |grade| grade.sum }
-  student_averages = totals.transform_values { |total| total / 10 }
+  student_averages = totals.transform_values { |total| total / num_assignments }
 end
 
 # Return a letter grade for a numerical score.
