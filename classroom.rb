@@ -17,14 +17,14 @@ end
 # them as 1-10.
 def assignment_average_score(grade_hash, assignment_num)
   all_assignment_scores = grade_hash.map { |data| data[1][assignment_num-1]}
-  all_assignment_scores.reduce(1) { |sum, score| sum + score } / grade_hash.length
+  all_assignment_scores.sum / grade_hash.length
 end
 
 # Return a hash of students and their average score.
 # TIP: To convert an array like [[:indiana, 90], [:nevada, 80]] to a hash,
 # use .to_h. Also look at Hash#transform_values.
 def averages(grade_hash)
-  totals = grade_hash.transform_values {|grade| grade.reduce(0) {|sum, score| sum + score} }
+  totals = grade_hash.transform_values {|grade| grade.sum }
   student_averages = totals.transform_values {|total| total / 10}
 end
 
@@ -59,7 +59,7 @@ def class_average(grade_hash)
   ranked_grade_hash = averages(grade_hash).sort_by do |student, average|
     -average
   end
-  ranked_grade_hash.map {|name, score| score}.reduce(1) {|sum, score| sum + score} / grade_hash.length
+  ranked_grade_hash.map {|name, score| score}.sum / grade_hash.length
 end
 
 # Return an array of the top `number_of_students` students.
