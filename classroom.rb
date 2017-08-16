@@ -65,6 +65,6 @@ end
 # Return an array of the top `number_of_students` students.
 def top_students(grade_hash, number_of_students)
   ranked_grade_hash = averages(grade_hash).sort_by { |student, average|
-    -average }
-  ranked_grade_hash.map { |name| name[0] }.take(number_of_students)
+    -average }.to_h
+  ranked_grade_hash.keys.take(number_of_students)
 end
